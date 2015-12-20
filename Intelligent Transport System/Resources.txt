@@ -1,0 +1,17 @@
+JDBC Driver for MySql:-
+mysql-connector-java-5.1.6-bin.jar
+
+Bluetooth Java Driver:-
+bluecove-2.1.0.jar
+
+For emailing:-
+mail.jar
+
+Application Server:-
+Apache Tomcat
+
+OS:-
+Mac/Windows
+
+Database:-
+MySql Essential 6.0

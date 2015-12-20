@@ -1,0 +1,21 @@
+*I initially set the source_id to false which implies that the customer hasnt yet boarded frm any station, as soon as he boards a station it is checked if the source_id is false or not. If yes it is set to the station name, if not then the fare is calculated and the source_id is set back to false. 
+
+*INSERT QUERY TO BE EXECUTED IN THE SQL CMD EDITOR:-
+insert REGISTERED_USERS values("btadr", "name", "emei_no", "D.0.B.", "MOB. NO.", "false", BALANCE);
+insert REGISTERED_USERS values("342343", "John", "534312", "21-10-1983", "9997662735", "false", 240);
+
+*SELECT QUERY TO BE EXECUTED IN THE SQL CMD EDITOR TO GET DETAILS FRM TRAVELERS_LOG:-
+select source, destination, fare, date_value from travelers_log where bluetooth_adr="11111" and date_value>'2010-08-08' and date_value<='2010-08-11';
+
+*CODE FOR JAVA TO DELETE THE ROWS FROM TRAVELERS_LOG N REGISTERED_USERS(2 B DONE BY THE USER ITSELF):-
+	String sql = "DELETE FROM registered_users WHERE bluetooth_adr = '11111'";
+        int delete = st.executeUpdate(sql);// if delete==1(row is deleted, else not)
+	
+	String sql = "DELETE FROM travelers_log WHERE bluetooth_adr = '11111'";
+	int delete = st.executeUpdate(sql);// if delete==1(row is deleted, else not)
+
+*For enablic BASIC authorization, make changes into the web.xml n the tomcat\conf\tomcat-users.xml(refer to beerSelect xml).
+
+NOTE: Replace the Tomcat\conf\tomcat-users.xml with the one placed here or add the supervisor in it
+
+Site of the supervisor is BlueTransport\masterindex.html username: gaurav password: sagar

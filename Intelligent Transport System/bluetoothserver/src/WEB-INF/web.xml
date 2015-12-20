@@ -1,0 +1,173 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+<servlet>
+		<servlet-name>authorization checker</servlet-name>
+		<servlet-class>com.control.StationAuthentication</servlet-class>
+		
+		<init-param>
+			<param-name>gaurav</param-name>
+			<param-value>A</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>sagar</param-name>
+			<param-value>B</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>guru</param-name>
+			<param-value>C</param-value>
+		</init-param>
+</servlet>
+
+<servlet>
+		<servlet-name>customer verifier</servlet-name>
+		<servlet-class>com.control.CustomerVerifier</servlet-class>
+		
+		<init-param>
+			<param-name>C</param-name>
+			<param-value>10</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>B</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>A</param-name>
+			<param-value>50</param-value>
+		</init-param>		
+		
+		<init-param>
+			<param-name>minbalance</param-name>
+			<param-value>50</param-value>
+		</init-param>
+</servlet>
+
+<servlet>
+		<servlet-name>add customer</servlet-name>
+		<servlet-class>com.control.CustomerCreater</servlet-class>
+</servlet>
+
+<servlet>
+		<servlet-name>user login</servlet-name>
+		<servlet-class>com.control.LoginUser</servlet-class>
+</servlet>
+
+<servlet>
+		<servlet-name>travel log</servlet-name>
+		<servlet-class>com.control.TravelLogFetcher</servlet-class>
+</servlet>
+
+<servlet>
+		<servlet-name>log out</servlet-name>
+		<servlet-class>com.control.LogOut</servlet-class>
+</servlet>
+
+<servlet>
+		<servlet-name>balance recharger</servlet-name>
+		<servlet-class>com.control.Recharge</servlet-class>
+</servlet>
+
+<context-param>
+	<param-name>driverclassname</param-name>
+	<param-value>com.mysql.jdbc.Driver</param-value>
+</context-param>
+
+<context-param>
+	<param-name>dburl</param-name>
+	<param-value>jdbc:mysql://localhost:3306/</param-value>
+</context-param>
+
+<context-param>
+	<param-name>dbusername</param-name>
+	<param-value>root</param-value>
+</context-param>
+
+<context-param>
+	<param-name>dbpassword</param-name>
+	<param-value>root</param-value>
+</context-param>
+
+<context-param>
+	<param-name>dbname</param-name>
+	<param-value>bluetransport</param-value>
+</context-param>
+
+<servlet-mapping>
+		<servlet-name>authorization checker</servlet-name>
+		<url-pattern>/authorization.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>customer verifier</servlet-name>
+		<url-pattern>/verify.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>add customer</servlet-name>
+		<url-pattern>/customerAdd.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>user login</servlet-name>
+		<url-pattern>/LoginUser.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>travel log</servlet-name>
+		<url-pattern>/TravelLogFetcher.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>log out</servlet-name>
+		<url-pattern>/LogOut.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>balance recharger</servlet-name>
+		<url-pattern>/BalanceRecharge.do</url-pattern>
+</servlet-mapping>
+
+<session-config>
+	<session-timeout>15</session-timeout>
+</session-config>
+
+<listener>
+	<listener-class>
+		com.control.BlueTransportContextListener
+	</listener-class>
+</listener>
+
+<security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Moderator Security</web-resource-name>
+		<url-pattern>/AddCustomer.jsp</url-pattern>
+		<url-pattern>/customerAdd.do</url-pattern>
+		<url-pattern>/recharge.jsp</url-pattern>
+		<url-pattern>/BalanceRecharge.do</url-pattern>
+	</web-resource-collection>
+	
+	<auth-constraint>
+		<role-name>supervisor</role-name>
+	</auth-constraint>
+	
+	<user-data-constraint>
+		<transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+</security-constraint>
+
+<login-config>
+	<auth-method>BASIC</auth-method>
+</login-config>
+
+<security-role>
+	<role-name>supervisor</role-name>
+</security-role>
+
+
+</web-app>
